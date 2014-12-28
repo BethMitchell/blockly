@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Development Environment for AR.Drone</title>
+  <script type="text/javascript" src="/Users/beth/blockly/blockly_compressed.js"></script>
+  <script type="text/javascript" src="/Users/beth/blockly/blocks_compressed.js"></script>
+  <script type="text/javascript" src="/Users/beth/blockly/javascript_compressed.js"></script>
+  <script type="text/javascript" src="/Users/beth/blockly/msg/js/en.js"></script>
+  <script type="text/javascript" src="/Users/beth/blockly/demos/Drone/drone_blocks.js"></script>
+  <script type="text/javascript" src="/Users/beth/blockly/demos/Drone/drone.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blockly Development Environment for AR.Drone</h1>
+
+  <p>This is a place to write Blockly programs to be run on a Parrot AR.Drone 2.0.</p>
+	
+  <p>
+    <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="runCode()">Run JavaScript</button>
+  </p>
+
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+	
+  <xml id="toolbox" style="display: none">
+    <category name="Drone">
+      <block type="drone_control"></block>
+      <block type="drone_rotate"></block>
+      <block type="drone_up"></block>
+      <block type="drone_down"></block>
+      <block type="drone_forward"></block>
+      <block type="drone_backward"></block>
+      <block type="drone_right"></block>
+      <block type="drone_left"></block>
+    </category>
+    <category name="Logic">
+      <block type="controls_if"></block>
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+      </block>
+      <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+	<block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+  </category>
+  <category name="Loops">
+    <block type="controls_whileUntil"></block>
+    <block type="controls_repeat_ext"></block>
+	       <block type="controls_flow_statements"></block>
+  </category>
+  <category name="Math">
+    <block type="math_number"></block>
+    <block type="math_arithmetic"></block>
+	        <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+	        <block type="math_constrain">
+        <value name="LOW">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="HIGH">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+  </category>
+  <category 
+		name="Variables" custom="VARIABLE">
+  </category>
+  <category 
+	name="Functions" custom="PROCEDURE">
+  </category>
+</xml>
+
+  <script>
+    Blockly.inject(document.getElementById('blocklyDiv'),
+        {path: '../../', toolbox: document.getElementById('toolbox')});
+	  
+	  function showCode() {
+      // Generate JavaScript code and display it.
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode();
+      alert(code);
+    }
+
+    function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.JavaScript.workspaceToCode();
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
