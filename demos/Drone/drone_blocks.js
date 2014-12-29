@@ -7,11 +7,11 @@ Blockly.Blocks['drone_control'] = {
     this.setHelpUrl('NULL');
     this.setColour(10);
     this.appendDummyInput()
-        .appendField("Take off");
+        .appendField("take off");
     this.appendStatementInput("PROGRAM")
-        .appendField("Do");
+        .appendField("do");
     this.appendDummyInput()
-        .appendField("And then land");
+        .appendField("and then land");
     this.setTooltip('');
   }
 };
@@ -19,7 +19,7 @@ Blockly.Blocks['drone_control'] = {
 Blockly.Blocks['drone_rotate'] = {
   init: function() {
     this.setHelpUrl('NULL');
-      this.setColour(160);
+      this.setColour(340);
       this.appendDummyInput()
         .appendField("spin")
         .appendField(new Blockly.FieldDropdown([["clockwise", "R"], ["counterclockwise", "L"]]), "which_direction");
@@ -48,7 +48,7 @@ Blockly.Blocks['drone_down'] = {
     this.setHelpUrl('NULL');
       this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly up");
+        .appendField("fly down");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -101,6 +101,19 @@ Blockly.Blocks['drone_left'] = {
       this.setColour(65);
       this.appendDummyInput()
         .appendField("fly left");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
+Blockly.Blocks['drone_hover'] = {
+  init: function() {
+    this.setHelpUrl('NULL');
+      this.setColour(300);
+      this.appendDummyInput()
+        .appendField("hover");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

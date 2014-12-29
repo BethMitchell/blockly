@@ -35,14 +35,19 @@
   <xml id="toolbox" style="display: none">
     <category name="Drone">
       <block type="drone_control"></block>
-      <block type="drone_rotate"></block>
       <block type="drone_up"></block>
       <block type="drone_down"></block>
       <block type="drone_forward"></block>
       <block type="drone_backward"></block>
       <block type="drone_right"></block>
       <block type="drone_left"></block>
+      <block type="drone_hover"></block>
+      <block type="drone_rotate"></block>
     </category>
+  <category name="Loops">
+    <block type="controls_repeat_ext"></block>
+    <block type="controls_whileUntil"></block>
+  </category>
     <category name="Logic">
       <block type="controls_if"></block>
       <block type="controls_if">
@@ -53,47 +58,22 @@
 	<block type="logic_negate"></block>
     <block type="logic_boolean"></block>
   </category>
-  <category name="Loops">
-    <block type="controls_whileUntil"></block>
-    <block type="controls_repeat_ext"></block>
-	       <block type="controls_flow_statements"></block>
-  </category>
   <category name="Math">
     <block type="math_number"></block>
     <block type="math_arithmetic"></block>
-	        <block type="math_trig"></block>
-      <block type="math_constant"></block>
-      <block type="math_number_property"></block>
-	        <block type="math_constrain">
-        <value name="LOW">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="HIGH">
-          <block type="math_number">
-            <field name="NUM">100</field>
-          </block>
-        </value>
-      </block>
-      <block type="math_random_int">
-        <value name="FROM">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="TO">
-          <block type="math_number">
-            <field name="NUM">100</field>
-          </block>
-        </value>
-      </block>
-  </category>
-  <category 
-		name="Variables" custom="VARIABLE">
-  </category>
-  <category 
-	name="Functions" custom="PROCEDURE">
+    <block type="math_constant"></block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">5</field>
+        </block>
+      </value>
+    </block>
   </category>
 </xml>
 
