@@ -4,8 +4,8 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks['drone_control'] = {
   init: function() {
-    this.setHelpUrl('http://www.example.com/');
-    this.setColour(210);
+    this.setHelpUrl('NULL');
+    this.setColour(10);
     this.appendDummyInput()
         .appendField("Take off");
     this.appendStatementInput("PROGRAM")
@@ -18,16 +18,11 @@ Blockly.Blocks['drone_control'] = {
 
 Blockly.Blocks['drone_rotate'] = {
   init: function() {
-      this.setHelpUrl('http://www.example.com/');
-       this.setColour(160);
-    this.appendDummyInput()
-        .appendField("spin");
-    this.appendValueInput("SPIN")
-        .setCheck("Number")
-        .appendField(new Blockly.FieldDropdown([["clockwise", "R"], ["counterclockwise", "L"], ["option", "OPTIONNAME"]]), "which_direction")
-        .appendField("for");
-    this.appendDummyInput()
-        .appendField(" seconds");
+    this.setHelpUrl('NULL');
+      this.setColour(160);
+      this.appendDummyInput()
+        .appendField("spin")
+        .appendField(new Blockly.FieldDropdown([["clockwise", "R"], ["counterclockwise", "L"]]), "which_direction");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -37,14 +32,10 @@ Blockly.Blocks['drone_rotate'] = {
 
 Blockly.Blocks['drone_up'] = {
   init: function() {
-    this.setColour(60);
-    this.setHelpUrl('http://www.example.com/');
+    this.setHelpUrl('NULL');
+      this.setColour(65);
     this.appendDummyInput()
-        .appendField("fly up for");
-    this.appendValueInput("UP")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(" seconds");
+        .appendField("fly up");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -54,15 +45,11 @@ Blockly.Blocks['drone_up'] = {
 
 Blockly.Blocks['drone_down'] = {
   init: function() {
-      this.setHelpUrl('http://www.example.com/');
-      this.setColour(60);
+    this.setHelpUrl('NULL');
+      this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly down for");
-      this.appendValueInput("DOWN")
-        .setCheck("Number");
-      this.appendDummyInput()
-        .appendField(" seconds");
-      this.setInputsInline(true);
+        .appendField("fly up");
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');
@@ -71,14 +58,10 @@ Blockly.Blocks['drone_down'] = {
 
 Blockly.Blocks['drone_forward'] = {
   init: function() {
-    this.setHelpUrl('http://www.example.com/');
-      this.setColour(60);
+    this.setHelpUrl('NULL');
+      this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly forward for");
-    this.appendValueInput("FORWARD")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(" seconds");
+        .appendField("fly forward");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -88,14 +71,10 @@ Blockly.Blocks['drone_forward'] = {
 
 Blockly.Blocks['drone_backward'] = {
   init: function() {
-    this.setHelpUrl('http://www.example.com/');
-      this.setColour(60);
+    this.setHelpUrl('NULL');
+      this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly backward for");
-    this.appendValueInput("BACKWARD")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(" seconds");
+        .appendField("fly backward");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -105,14 +84,10 @@ Blockly.Blocks['drone_backward'] = {
 
 Blockly.Blocks['drone_right'] = {
   init: function() {
-    this.setHelpUrl('http://www.example.com/');
-      this.setColour(60);
+    this.setHelpUrl('NULL');
+      this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly right for");
-    this.appendValueInput("RIGHT")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(" seconds");
+        .appendField("fly right");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -122,14 +97,10 @@ Blockly.Blocks['drone_right'] = {
 
 Blockly.Blocks['drone_left'] = {
   init: function() {
-    this.setHelpUrl('http://www.example.com/');
-      this.setColour(60);
+    this.setHelpUrl('NULL');
+      this.setColour(65);
       this.appendDummyInput()
-        .appendField("fly left for");
-    this.appendValueInput("LEFT")
-        .setCheck("Number");
-    this.appendDummyInput()
-        .appendField(" seconds");
+        .appendField("fly left");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
