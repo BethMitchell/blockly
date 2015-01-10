@@ -1,0 +1,10 @@
+client.takeoff();
+try {
+  client.stop()
+  .after(3000, function() {
+  this.stop();
+  });
+}
+finally {
+  client.land();
+}

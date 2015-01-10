@@ -5,22 +5,21 @@ goog.require('Blockly.JavaScript');
 // The way that client.after works in arDrone is that it puts the requested function in a queue
 // and then returns control to the main program. All of the movement functions here
 // make use of client.after so that they will be executed in the order that the programmer
-// intends. Functions to access nav data or camera data will not need to use client.after.
+// intended. Functions to access nav data or camera data will not need to use client.after.
 
 Blockly.JavaScript['drone_control'] = function(block) {
     // This code causes the drone to take off, try to execute the rest of the program, and then land.
-    var code = 'console.log("Taking off...");\n client.takeoff();\n\
-client.after(1000, function() {\n this.stop();\n});\n try {';
+    var code = 'console.log("Taking off...");\nclient.takeoff();\n\
+client.after(1000, function() {\n this.stop();\n});\ntry {';
     code += '\n' + Blockly.JavaScript.statementToCode(block, 'PROGRAM');
-    code += '\n} \nfinally {\nconsole.log("Landing...");\n client.after(0, function()\n\
-{\n this.land();\n});}\n';
+    code += '\n} \nfinally {\nconsole.log("Landing...");\nclient.after(0, function()\n\
+{\nthis.land();\n});}\n';
     return code;
 };
 
 Blockly.JavaScript['drone_up'] = function(block) {
   // This function causes the drone to gain altitude for 1 second at quarter speed.
-    var code = 'client.after(0, function () {\n console.log("Going up...");\n\
-this.up(0.25);\n})\n\
+    var code = 'client.up(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
       });\n';
@@ -29,57 +28,52 @@ this.up(0.25);\n})\n\
 
 Blockly.JavaScript['drone_down'] = function(block) {
   // This function causes the drone to lose altitude for 1 second at quarter speed.
-    var code = 'client.after(0, function () {\n console.log("Coming down...");\n\
-this.down(0.25);\n})\n\
+    var code = 'client.down(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
-      });\n';
+      });';
     return code;
 };
 
 Blockly.JavaScript['drone_forward'] = function(block) {
-  // This function causes the drone to fly forward for 1 second at half speed.
-    var code = 'client.after(0, function () {\n console.log("Flying forward...");\n\
-this.front(0.5);\n})\n\
+  // This function causes the drone to fly forward for 1 second at quarter speed.
+    var code = 'client.front(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
-      });\n';
+      });';
     return code;
 };
 
 Blockly.JavaScript['drone_backward'] = function(block) {
-  // This function causes the drone to fly backward for 1 second at half speed.
-    var code = 'client.after(0, function () {\n console.log("Flying backward...");\n\
-this.back(0.5);\n})\n\
+  // This function causes the drone to fly backward for 1 second at quarter speed.
+    var code = 'client.back(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
-      });\n';
+      });';
     return code;
 };
-    
+
 Blockly.JavaScript['drone_right'] = function(block) {
-  // This function causes the drone to fly right for 1 second at half speed.
-    var code = 'client.after(0, function () {\n console.log("Flying right...");\n\
-this.right(0.5);\n})\n\
+  // This function causes the drone to fly right for 1 second at quarter speed.
+    var code = 'client.right(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
-      });\n';
+      });';
     return code;
 };
-    
+
 Blockly.JavaScript['drone_left'] = function(block) {
-  // This function causes the drone to fly left for 1 second at half speed.
-    var code = 'client.after(0, function () {\n console.log("Flying left...");\n\
-this.left(0.5);\n})\n\
+  // This function causes the drone to fly left for 1 second at quarter speed.
+    var code = 'client.left(0.25)\n\
       .after(1000, function() {\n\
         this.stop();\n\
-      });\n';
+      });';
     return code;
 };
 
 Blockly.JavaScript['drone_hover'] = function(block) {
     // This function causes the drone to hover in place for 3 seconds.
-    var code = 'client.stop()\n console.log("Hovering...);\n\
+    var code = 'client.stop()\n\
 .after(3000, function() {\n\
 this.stop();\n\
 });';
@@ -89,16 +83,18 @@ this.stop();\n\
 Blockly.JavaScript['drone_rotate'] = function(block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_which_direction = block.getFieldValue('which_direction');
-    // This function causes the drone to spin clockwise or counterclockwise at half speed for 1 second.
+    // This function causes the drone to spin clockwise or counterclockwise for 1 second.
     var code = '';
     if (dropdown_which_direction == 'R'){
-	var code = 'client.after(0, function() { \nconsole.log("Spinning clockwise...");\n\
-	this.clockwise(0.5);\n }).after(3000, function() {\n\
-	this.stop(); \n });'
+	var code = 'client.clockwise(0.5)\n\
+.after(1000, function() {\n\
+this.stop();\n\
+});';
     }
-    else {var code = 'client.after(0, function() { \nconsole.log("Spinning counterclockwise...");\n\
-	this.counterclockwise(0.5);\n }).after(3000, function() {\n\
-	this.stop(); \n });'
+    else {var code = 'client.counterclockwise(0.5)\n\
+.after(1000, function() {\n\
+this.stop();\n\
+});';
     }
   return code;
 };
