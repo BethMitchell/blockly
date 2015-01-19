@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Blockly Development Environment for AR.Drone</title>
+  <script type="text/javascript" src="../../Blob.js"></script>
+  <script type="text/javascript" src="../../FileSaver.js"></script>
   <script type="text/javascript" src="../../blockly_compressed.js"></script>
   <script type="text/javascript" src="../../blocks_compressed.js"></script>
   <script type="text/javascript" src="../../javascript_compressed.js"></script>
@@ -27,6 +29,7 @@
 	
   <p>
     <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="saveCode()">Save JavaScript</button>
   </p>
 
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
@@ -78,16 +81,32 @@
 </xml>
 
   <script>
-    Blockly.inject(document.getElementById('blocklyDiv'),
-        {path: '../../', toolbox: document.getElementById('toolbox')});
-	  
-	  function showCode() {
-      // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode();
-      alert(code);
-    }
+   Blockly.inject(document.getElementById('blocklyDiv'),
+                  {path: '../../',
+                   toolbox: document.getElementById('toolbox')});
 
+   function generateCode() {
+     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+     var code = "\
+var arDrone = require('ar-drone');\n\
+var client  = arDrone.createClient();\n\
+\n\
+";
+     code += Blockly.JavaScript.workspaceToCode();
+     return code;
+   }
+   
+   function showCode() {
+     var code = generateCode();
+     alert(code);
+   }
+   
+   function saveCode() {
+     var code = generateCode();
+     var blob = new Blob([code], {type: "text/javascript;chartset=utf-8"});      
+     saveAs(blob, "drone-output.js");
+     alert(code);
+   }
   </script>
 
 </body>
