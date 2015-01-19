@@ -79,11 +79,11 @@
 </xml>
 
   <script>
-    Blockly.inject(document.getElementById('blocklyDiv'),
-                   {path: '../../',
-                    toolbox: document.getElementById('toolbox')});
-	  
-    function showCode() {
+   Blockly.inject(document.getElementById('blocklyDiv'),
+                  {path: '../../',
+                   toolbox: document.getElementById('toolbox')});
+
+   function showCode() {
       // Generate JavaScript code and display it.
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       var code = Blockly.JavaScript.workspaceToCode();
