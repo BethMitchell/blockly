@@ -1,3 +1,6 @@
 .DS_Store
 *.pyc
 *.komodoproject
+.gitmodules
+FileSaver.js
+Blob.js
