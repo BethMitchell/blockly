@@ -28,7 +28,6 @@
   <p>This is a place to write Blockly programs to be run on a Parrot AR.Drone 2.0.</p>
 	
   <p>
-    <button onclick="showCode()">Show JavaScript</button>
     <button onclick="saveCode()">Save JavaScript</button>
   </p>
 
@@ -94,11 +93,6 @@ var client  = arDrone.createClient();\n\
 ";
      code += Blockly.JavaScript.workspaceToCode();
      return code;
-   }
-   
-   function showCode() {
-     var code = generateCode();
-     alert(code);
    }
    
    function saveCode() {
