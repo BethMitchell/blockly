@@ -16,8 +16,17 @@ Blockly.JavaScript['drone_control'] = function(block) {
     var code = 'console.log("Taking off...");\n client.takeoff();\n\
 client.after(1000, function() {\n this.stop();\n});\n try {';
     code += '\n' + Blockly.JavaScript.statementToCode(block, 'PROGRAM');
-    code += '\n} \nfinally {\nconsole.log("Landing...");\n client.after(0, function()\n\
-{\n this.land();\n});}\n';
+    code += '\n\
+} finally {\n\
+  client.after(0, function()\n\
+    {\n\
+      console.log("Landing...");\n\
+      this.land();\n\
+    }\n\
+  ).after(3000, function() {\n\
+    process.exit(0);\n\
+  });\n\
+}\n';
     return code;
 };
 
@@ -83,9 +92,10 @@ this.left(0.5);\n})\n\
 
 Blockly.JavaScript['drone_hover'] = function(block) {
     // This function causes the drone to hover in place for 3 seconds.
-    var code = 'client.stop()\n console.log("Hovering...);\n\
-.after(3000, function() {\n\
-this.stop();\n\
+    var code = 'client.after(0, function() {\n\
+console.log("Hovering...");\n\
+}).after(3000, function() {\n\
+  this.stop();\n\
 });';
     return code;
 };
@@ -93,15 +103,15 @@ this.stop();\n\
 Blockly.JavaScript['drone_rotate'] = function(block) {
   var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_which_direction = block.getFieldValue('which_direction');
-    // This function causes the drone to spin clockwise or counterclockwise at half speed for 1 second.
+    // This function causes the drone to spin clockwise or counterclockwise at half speed for 5 seconds.
     var code = '';
     if (dropdown_which_direction == 'R'){
 	var code = 'client.after(0, function() { \nconsole.log("Spinning clockwise...");\n\
-	this.clockwise(0.5);\n }).after(3000, function() {\n\
+	this.clockwise(0.5);\n }).after(5000, function() {\n\
 	this.stop(); \n });'
     }
     else {var code = 'client.after(0, function() { \nconsole.log("Spinning counterclockwise...");\n\
-	this.counterclockwise(0.5);\n }).after(3000, function() {\n\
+	this.counterClockwise(0.5);\n }).after(5000, function() {\n\
 	this.stop(); \n });'
     }
   return code;
