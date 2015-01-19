@@ -116,23 +116,3 @@ Blockly.JavaScript['drone_rotate'] = function(block) {
     }
   return code;
 };
-
-Blockly.JavaScript['drone_blink_lights'] = function(block) {
-  var dropdown_led_pattern = block.getFieldValue('LED_pattern');
-    // This function causes the drone to blink its LEDs either red, green, or orange
-    // at 5 hz for 2 seconds.
-    var code = '';
-    if (dropdown_led_pattern == 'red'){
-  var code = 'client.after(0, function() {\nconsole.log("Blinking red...");\n\
-this.animateLeds("blinkRed", 5, 2);})';
-    }
-else if (dropdown_led_pattern == 'green'){
-var code = 'client.after(0, function() { \n console.log("Blinking green...");\n\
-this.animateLeds("blinkGreen", 5, 2);})';
-}
-  else {
-  var code = 'client.after(0, function() { \n console.log("Blinking orange...");\n\
-this.animateLeds("blinkOrange", 5, 2);})';
-  }
-  return code;
-};
