@@ -120,3 +120,14 @@ Blockly.Blocks['drone_hover'] = {
     this.setTooltip('');
   }
 };
+
+Blockly.Blocks['drone_blink_lights'] = {
+  init: function() {
+    this.setColour(230);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["blink red", "red"], ["blink green", "green"], ["blink orange", "orange"]]), "LED_pattern");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
