@@ -16,7 +16,7 @@ Blockly.JavaScript['drone_control'] = function(block) {
     var code = '\
 console.log("Taking off...");\n\
 client.takeoff();\n\
-client.after(1000, function() {\n\
+client.after(3000, function() {\n\
    this.stop();\n\
 });\n\
 try {\n\
